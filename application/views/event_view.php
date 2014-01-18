@@ -5,19 +5,21 @@
 <title>Events Manager</title>
 </head>
 <body>
-<form id="theForm" method="post">
+
+
+<form id="theForm">
 	<h1>Events Manager</h1>
 	<button id="createNewEvent" type="button">create new event</button>
 	
-		<div id="divCreateNewEventHidden" style="display: block;">
+		<div id="divCreateNewEventHidden" style="display: none;">
 		
 			<span>
 				<label for="EventName">Event Name</label>
-			 	<input type="text" id="EventName"><br>
+			 	<input type="text" id="EventName" name="name"><br>
 			</span>
 			<span>
 				<label for="Place">Place</label>
-				<input type="text" id="Place"><br>
+				<input type="text" id="Place" name="place"><br>
 			</span>
 			<span>
 				<label for="Time">Time</label>
@@ -49,20 +51,21 @@ $( document ).ready(function()
     
 });
 
-var frm = $('#theForm');
-frm.submit(function (ev) 
+
+
+$("#theForm").submit(function (ev) 
 {
+	ev.preventDefault();
+	
     $.ajax({
         type: "POST",
-        url: "http://localhost/EventsManagement/index.php/EventsManagerController/post",
-        data: "from submittt",
+        url: "event/create",
+        data: $( this ).serialize(),
         done: function (data) 
         {
-            alert(data);
+            alert('yes');
         }
     });
-
-    ev.preventDefault();
 });
 
 </script>

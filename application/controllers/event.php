@@ -1,27 +1,26 @@
 <?php
 
-class EventsManagerController extends CI_Controller 
+class Event extends CI_Controller 
 {
 	
 	public function __construct()
 	{
 		parent::__construct();
 		$this->load->model('EventsManagerModel');
-		$this->load->view('EventsManagerView');
+		$this->load->view('event_view');
 	}
 		
 	
-	public function view()
+	public function index()
 	{
 	
 		echo 'blah';
 	
 	}
 	
-	public function post()
+	public function create()
 	{
-		echo 'blah post';
-		echo $this->input->post('submit');
+		var_dump ($this->input->post());
 		if ($this->input->post('submit')==true) 
 		{
 			echo 'blah post';
